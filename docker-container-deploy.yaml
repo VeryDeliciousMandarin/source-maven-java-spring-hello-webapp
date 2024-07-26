@@ -1,0 +1,13 @@
+- name: Playbook Deploy webapp container
+  hosts: localhost
+  connection: local
+  
+  tasks:
+  - name: "Create & Start Container"
+    docker_container:
+      name: myweb
+      image: "zzangjoo/myweb:{{ lookup('env','BUILD_NUMBER') }}"
+      state: started
+      ports:
+      - "80:8080"
+
